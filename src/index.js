@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom';
 //import App from './App';
 //import AppWithState from './AppWithState';
 //import NestedComponents from './NestedComponents';
+import RouterFile from './RouterFile';
+import Runners from './Runners';
 import AppWithAjax from './AppWithAjax';
+import { BrowserRouter, Match, Miss } from 'react-router';
+
+
 
 // ***** Use App ****** //
 
@@ -29,9 +34,16 @@ import AppWithAjax from './AppWithAjax';
 // 	document.getElementById('root')
 // );
 
+
+
 // ***** Use NextedComponents ***** //
 ReactDOM.render (
-	<AppWithAjax />,
+  <BrowserRouter>
+  <div className="router">
+    <Match exactly pattern="/" component={Runners}/>
+    <Match exactly pattern="/ajaxapp" component={AppWithAjax}/>
+    </div>
+   </BrowserRouter>,
 	document.getElementById('root')
 )
 

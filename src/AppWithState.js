@@ -29,6 +29,8 @@ class AppWithState extends React.Component {
 
 				<input type="text"
 					onChange={this.update.bind(this)}/>
+				<input type="text"
+					onChange={this.update.bind(this)}/>
 
 				{/* Now, instead of hard coding the text box, pass in a component} */}
 				<Widget update={this.update.bind(this)} />
