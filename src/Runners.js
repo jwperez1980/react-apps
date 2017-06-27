@@ -21,6 +21,12 @@ const store = createStore(combineForms({
 class Runners extends React.Component {
   handleSubmit(val) {
     // Do anything you want with the form value 
+    fetch( 'https://swapi.co/api/people/?format=json' )
+    //fetch( 'https://quiet-refuge-72491.herokuapp.com/runners.json')
+      .then( response => response.json() )
+      .then( (response) => this.setState({response}) )
+
+    
     console.log(val);
   }
 
