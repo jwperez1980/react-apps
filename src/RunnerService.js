@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 
-class AppWithAjax extends React.Component {
+class RunnerService extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {posts: []};
@@ -11,8 +11,8 @@ class AppWithAjax extends React.Component {
 		//'https://quiet-refuge-72491.herokuapp.com/runners.json'
 
 	componentDidMount() {
-		fetch( 'https://swapi.co/api/people/?format=json' )
-		//fetch( 'https://quiet-refuge-72491.herokuapp.com/runners.json')
+		//fetch( 'https://swapi.co/api/people/?format=json' )
+		fetch( 'https://quiet-refuge-72491.herokuapp.com/runners.json')
 			.then( response => response.json() )
 			.then( (response) => this.setState({response}) )
 
@@ -31,15 +31,15 @@ class AppWithAjax extends React.Component {
     	if(!this.state.response) {
     		return <div>Waiting on response</div>
     	}
-    	if(this.state.response.results.length === 0) {
+    	if(this.state.response.length === 0) {
     		return <div>No results retruned</div>
     	}
 
 
-      // Normal case         
-      var returnedValues = this.state.response.results.map(function(index){
+      //Normal case         
+      var returnedValues = this.state.response.map(function(index){
         return (
-          <div key={index.name} >{index.name}</div>
+          <div key={index.id} >{index.first_name} {index.last_name}</div>
         )
       });
 
@@ -54,4 +54,4 @@ class AppWithAjax extends React.Component {
 
 
 
-export default AppWithAjax
+export default RunnerService

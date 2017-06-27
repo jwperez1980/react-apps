@@ -1,57 +1,54 @@
 import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { combineForms } from 'react-redux-form';
+import { Form, Control } from 'react-redux-form';
+import PropTypes from 'prop-types';
 
-
-class Runners extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+const initialRunner = {
       fname: '',
       lname: '',
       age: '',
       city: '',
       st: '',
       club: ''
-    } 
+}
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const store = createStore(combineForms({
+  user: initialRunner,
+})); 
 
-  handleBlur(val) {
-    this.setState({"fname":  "fuckyou"})
-      }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.fname);
-    event.preventDefault();
+class Runners extends React.Component {
+  handleSubmit(val) {
+    // Do anything you want with the form value 
+    console.log(val);
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          First Name:<input id="fname" type="text" onBlur={this.handleBlur("fname")} />
-        </div>
-        <div>
-          Last Name:<input id="lname" type="text"   />
-        </div>
-        <div>
-          Age:<input id="age" type="text"   />
-        </div>
-        <div>
-          City:<input id="city" type="text"  />
-        </div>
-        <div>
-          State:<input id="state" type="text"  />
-        </div>
-        <div>
-          Club:<input id="club" type="text"   />
-        </div>
-        <div>
-        <input type="submit" value="Submit" />
-        </div>
-      </form>
+      <Provider store={ store }>
+
+      <Form model="user" onSubmit={(val) => this.handleSubmit(val)}>
+        <div>First Name <Control.text model=".fname" /></div>
+        <div>Last Name <Control.text model=".lname" /></div>
+        <div>Age <Control.text model=".age" /></div>
+        <div>City <Control.text model=".city" /></div>
+        <div>State <Control.text model=".st" /></div>
+        <div>Club <Control.text model=".club" /></div>
+        <div><button>Submit!</button></div>
+      </Form>
+      </Provider>
     );
   }
+}
+
+initialRunner.propTypes = {
+  fname: PropTypes.string,
+  lname: PropTypes.string,
+  age: PropTypes.number,
+  city: PropTypes.string,
+  st: PropTypes.string,
+  club: PropTypes.string
 }
 
 export default Runners

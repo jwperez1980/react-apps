@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import RouterFile from './RouterFile';
 import Runners from './Runners';
 import AppWithAjax from './AppWithAjax';
+import RunnerService from './RunnerService';
 import { BrowserRouter, Match, Miss } from 'react-router';
 
 
@@ -41,6 +42,7 @@ ReactDOM.render (
   <BrowserRouter>
   <div className="router">
     <Match exactly pattern="/" component={Runners}/>
+    <Match exactly pattern="/runnerService" component={RunnerService}/>
     <Match exactly pattern="/ajaxapp" component={AppWithAjax}/>
     </div>
    </BrowserRouter>,
